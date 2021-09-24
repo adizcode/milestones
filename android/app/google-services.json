@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "955234716773",
+    "project_id": "milestones-a8067",
+    "storage_bucket": "milestones-a8067.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955234716773:android:1ae0d089e83037aa858a8c",
+        "android_client_info": {
+          "package_name": "com.github.adizcode.milestones"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "955234716773-3ddits88u1vv52uqvg6lce70jdcb7qef.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.github.adizcode.milestones",
+            "certificate_hash": "2ec6bfe2e284cb4ae0d57acd689564e11a6aa54c"
+          }
+        },
+        {
+          "client_id": "955234716773-e1nlt1u2n6nfpkg4ij37m7kjn63nmnt9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbTtLix4yqthZIqtVYhYukuzG0vV4aS3o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "955234716773-e1nlt1u2n6nfpkg4ij37m7kjn63nmnt9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
