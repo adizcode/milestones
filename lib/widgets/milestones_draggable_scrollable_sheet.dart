@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:milestones/models/milestone.dart';
 import 'package:milestones/services/database.dart';
+import 'package:milestones/shared/constants.dart';
+import 'package:milestones/shared/validators.dart';
 import 'package:milestones/widgets/frosted_glass_filter.dart';
 import 'package:sizer/sizer.dart';
 
@@ -169,11 +171,6 @@ class _MilestonesDraggableScrollableSheetState
   }
 
   Widget _milestonesDialogBuilder(BuildContext context) {
-    final dialogFieldBorder = OutlineInputBorder(
-      borderSide: const BorderSide(color: Colors.blue),
-      borderRadius: BorderRadius.circular(2.w),
-    );
-
     return FrostedGlassFilter(
       sigmaX: 5,
       sigmaY: 5,
@@ -194,23 +191,9 @@ class _MilestonesDraggableScrollableSheetState
                 TextFormField(
                   initialValue: _milestoneTask,
                   onChanged: (task) => _milestoneTask = task,
-                  validator: (task) {
-                    return (task?.trim().length ?? 0) == 0
-                        ? 'Please enter something'
-                        : null;
-                  },
-                  decoration: InputDecoration(
-                    label: const Text('What did you achieve?'),
-                    border: dialogFieldBorder,
-                    errorStyle: const TextStyle(color: Colors.pink),
-                    errorBorder: dialogFieldBorder.copyWith(
-                      borderSide: const BorderSide(color: Colors.pink),
-                    ),
-                    focusedErrorBorder: dialogFieldBorder.copyWith(
-                      borderSide: const BorderSide(color: Colors.pink),
-                    ),
-                    contentPadding: EdgeInsets.symmetric(horizontal: 3.w),
-                  ),
+                  validator: emptyTextValidator,
+                  decoration: textInputDecoration.copyWith(
+                      labelText: 'What did you achieve?'),
                 ),
                 SizedBox(
                   height: 1.5.h,
