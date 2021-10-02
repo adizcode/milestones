@@ -4,7 +4,7 @@ import 'package:milestones/services/auth.dart';
 import 'package:sizer/sizer.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-import 'milestones_bar.dart';
+import '../../../widgets/milestones_bar.dart';
 
 class MilestonesProgressWidget extends StatelessWidget {
   const MilestonesProgressWidget(

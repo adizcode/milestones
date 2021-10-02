@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:milestones/screens/authenticate/widgets/auth_form_card.dart';
+import 'package:milestones/services/auth.dart';
 import 'package:milestones/shared/constants.dart';
 import 'package:milestones/shared/validators.dart';
 import 'package:milestones/widgets/milestones_background.dart';
@@ -20,6 +21,8 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
+  String email = '';
+  String password = '';
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +33,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             formKey: _formKey,
             children: [
               TextFormField(
+                onChanged: (value) => email = value,
                 validator: emptyTextValidator,
                 decoration: textInputDecoration.copyWith(
                   labelText: 'Email',
@@ -39,6 +43,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 height: 5.w,
               ),
               TextFormField(
+                onChanged: (value) => password = value,
                 validator: emptyTextValidator,
                 decoration: textInputDecoration.copyWith(
                   labelText: 'Password',
@@ -51,8 +56,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ElevatedButton(
                 onPressed: () async {
                   if (_formKey.currentState?.validate() ?? false) {
-                    // TODO: Register With Email
-
+                    try {
+                      await AuthService().registerWithEmail(email, password);
+                    } catch (e) {
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(SnackBar(content: Text(e.toString())));
+                    }
                   }
                 },
                 child: Text(
