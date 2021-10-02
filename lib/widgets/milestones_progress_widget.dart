@@ -4,6 +4,8 @@ import 'package:milestones/services/auth.dart';
 import 'package:sizer/sizer.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
+import 'milestones_bar.dart';
+
 class MilestonesProgressWidget extends StatelessWidget {
   const MilestonesProgressWidget(
       {Key? key,
@@ -29,41 +31,12 @@ class MilestonesProgressWidget extends StatelessWidget {
         ),
         Align(
           alignment: const Alignment(0, -1),
-          child: Card(
-            color: Colors.white.withOpacity(0.4),
-            margin: EdgeInsets.zero,
-            elevation: 0,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 4.5.w, vertical: 1.h),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Milestones',
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  TextButton.icon(
-                    onPressed: () async {
-                      await AuthService().signOut();
-                    },
-                    icon: Icon(
-                      Icons.logout,
-                      size: 6.w,
-                    ),
-                    label: Text(
-                      'Logout',
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+          child: MilestonesBar(
+            onActionPressed: () async {
+              await AuthService().signOut();
+            },
+            actionIcon: Icons.logout,
+            actionLabel: 'Logout',
           ),
         )
       ],
