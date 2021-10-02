@@ -8,12 +8,28 @@ class AuthService {
     return _auth.authStateChanges().map(_userFromFirebaseUser);
   }
 
-  Future<firebase.UserCredential> signInAnon() {
-    return _auth.signInAnonymously();
+  Future<firebase.UserCredential> signInAnon() async {
+    return await _auth.signInAnonymously();
   }
 
-  Future<void> signOut() {
-    return _auth.signOut();
+  Future<firebase.UserCredential> registerWithEmail(
+    String email,
+    String password,
+  ) async {
+    return await _auth.createUserWithEmailAndPassword(
+        email: email, password: password);
+  }
+
+  Future<firebase.UserCredential> signInWithEmail(
+    String email,
+    String password,
+  ) async {
+    return await _auth.signInWithEmailAndPassword(
+        email: email, password: password);
+  }
+
+  Future<void> signOut() async {
+    return await _auth.signOut();
   }
 
   User? _userFromFirebaseUser(firebase.User? user) {

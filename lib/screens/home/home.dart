@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:milestones/models/milestone.dart';
 import 'package:milestones/models/user.dart';
 import 'package:milestones/services/database.dart';
-import 'package:milestones/widgets/milestones_draggable_scrollable_sheet.dart';
-import 'package:milestones/widgets/milestones_progress_widget.dart';
+import 'package:milestones/screens/home/widgets/milestones_draggable_scrollable_sheet.dart';
+import 'package:milestones/screens/home/widgets/milestones_progress_widget.dart';
 import 'package:provider/provider.dart';
 
 // Constant

@@ -22,7 +22,9 @@ class _AuthenticateState extends State<Authenticate> {
     return Scaffold(
       backgroundColor: Colors.lightGreenAccent,
       body: SafeArea(
-        child: showSignIn ? LoginScreen(toggleView: _toggleView) : RegisterScreen(toggleView: _toggleView),
+        child: showSignIn
+            ? LoginScreen(toggleView: _toggleView)
+            : RegisterScreen(toggleView: _toggleView),
       ),
     );
   }
