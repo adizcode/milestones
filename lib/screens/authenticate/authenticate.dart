@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:milestones/services/auth.dart';
+import 'package:milestones/screens/authenticate/register.dart';
 
-class Authenticate extends StatelessWidget {
+import 'login.dart';
+
+class Authenticate extends StatefulWidget {
   const Authenticate({Key? key}) : super(key: key);
+
+  @override
+  State<Authenticate> createState() => _AuthenticateState();
+}
+
+class _AuthenticateState extends State<Authenticate> {
+  bool showSignIn = true;
+
+  void _toggleView() {
+    setState(() => showSignIn = !showSignIn);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          child: const Text('Sign In Anonymously'),
-          onPressed: () async {
-            await AuthService().signInAnon();
-          },
-        ),
+      backgroundColor: Colors.lightGreenAccent,
+      body: SafeArea(
+        child: showSignIn ? LoginScreen(toggleView: _toggleView) : RegisterScreen(toggleView: _toggleView),
       ),
     );
   }
