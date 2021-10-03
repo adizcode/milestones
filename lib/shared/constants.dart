@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+// Colors
+const colorPrimary = Color(0xFF2196F3);
+const colorBackground = Color(0xFF21F3E9);
+
+// Properties
+final borderRadius = 4.h;
+
+
 final textInputDecoration = InputDecoration(
   contentPadding: EdgeInsets.symmetric(horizontal: 3.w),
   enabledBorder: OutlineInputBorder(
     borderRadius: BorderRadius.circular(2.w),
   ),
   focusedBorder: OutlineInputBorder(
-    borderSide: const BorderSide(color: Colors.blue, width: 2),
+    borderSide: const BorderSide(color: colorPrimary, width: 2),
     borderRadius: BorderRadius.circular(2.w),
   ),
   errorBorder: OutlineInputBorder(
