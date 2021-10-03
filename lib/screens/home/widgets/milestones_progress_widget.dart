@@ -18,28 +18,11 @@ class MilestonesProgressWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          height: 100.h,
-          width: 100.w,
-          color: Colors.lightGreenAccent,
-          child: Padding(
-            padding: EdgeInsets.all(4.5.w),
-            child: _milestonesProgressIndicatorBuilder(),
-          ),
-        ),
-        Align(
-          alignment: const Alignment(0, -1),
-          child: MilestonesBar(
-            onActionPressed: () async {
-              await AuthService().signOut();
-            },
-            actionIcon: Icons.logout,
-            actionLabel: 'Logout',
-          ),
-        )
-      ],
+    return Center(
+      child: Padding(
+        padding: EdgeInsets.all(4.5.w),
+        child: _milestonesProgressIndicatorBuilder(),
+      ),
     );
   }
 

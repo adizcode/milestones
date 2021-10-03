@@ -25,7 +25,7 @@ class MilestonesDraggableScrollableSheet extends StatefulWidget {
 class _MilestonesDraggableScrollableSheetState
     extends State<MilestonesDraggableScrollableSheet> {
   static const double minExtent = 0.1;
-  static const double maxExtent = 1;
+  static const double maxExtent = 0.9;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -157,8 +157,8 @@ class _MilestonesDraggableScrollableSheetState
       child: Padding(
         padding: EdgeInsets.all(2.5.w),
         child: SizedBox(
-          height: 17.w,
-          width: 17.w,
+          height: 15.w,
+          width: 15.w,
           child: FittedBox(
             child: FloatingActionButton(
               onPressed: onPressed,

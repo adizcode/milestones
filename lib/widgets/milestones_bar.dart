@@ -10,7 +10,7 @@ class MilestonesBar extends StatelessWidget {
   }) : super(key: key);
 
   final void Function()? onActionPressed;
-  final IconData actionIcon;
+  final IconData? actionIcon;
   final String actionLabel;
 
   @override

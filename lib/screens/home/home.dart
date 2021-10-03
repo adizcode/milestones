@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:milestones/models/milestone.dart';
 import 'package:milestones/models/user.dart';
+import 'package:milestones/services/auth.dart';
 import 'package:milestones/services/database.dart';
 import 'package:milestones/screens/home/widgets/milestones_draggable_scrollable_sheet.dart';
 import 'package:milestones/screens/home/widgets/milestones_progress_widget.dart';
+import 'package:milestones/widgets/milestones_scaffold.dart';
 import 'package:provider/provider.dart';
 
 // Constant
@@ -20,19 +22,21 @@ class HomeScreen extends StatelessWidget {
     return StreamBuilder<List<Milestone>>(
       stream: db.milestones,
       builder: (context, snapshot) {
-        return Scaffold(
-          backgroundColor: Colors.lightGreenAccent,
-          body: SafeArea(
-            child: Stack(
-              children: [
-                MilestonesProgressWidget(
-                  totalMilestonesCount: _totalMilestonesCount,
-                  currentMilestonesCount: snapshot.data?.length ?? 0,
-                ),
-                MilestonesDraggableScrollableSheet(
-                    milestonesList: snapshot.data ?? [], databaseService: db),
-              ],
-            ),
+        return MilestonesScaffold(
+          onActionPressed: () async {
+            await AuthService().signOut();
+          },
+          actionIcon: Icons.logout,
+          actionLabel: 'Logout',
+          child: Stack(
+            children: [
+              MilestonesProgressWidget(
+                totalMilestonesCount: _totalMilestonesCount,
+                currentMilestonesCount: snapshot.data?.length ?? 0,
+              ),
+              MilestonesDraggableScrollableSheet(
+                  milestonesList: snapshot.data ?? [], databaseService: db),
+            ],
           ),
         );
       },
