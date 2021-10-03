@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:milestones/shared/constants.dart';
 import 'package:sizer/sizer.dart';
 
 import 'milestones_bar.dart';
@@ -22,14 +23,14 @@ class MilestonesScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightGreenAccent,
+      backgroundColor: colorBackground,
       body: SafeArea(
         child: Stack(
           children: [
             Container(
               height: 100.h,
               width: 100.w,
-              color: Colors.lightGreenAccent,
+              color: colorBackground,
               child: Center(
                 child: child,
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:milestones/shared/constants.dart';
 import 'package:sizer/sizer.dart';
 
 class MilestonesBar extends StatelessWidget {
@@ -27,7 +28,7 @@ class MilestonesBar extends StatelessWidget {
             Text(
               'Milestones',
               style: TextStyle(
-                color: Colors.blue,
+                color: colorPrimary,
                 fontSize: 16.sp,
                 fontWeight: FontWeight.w500,
               ),

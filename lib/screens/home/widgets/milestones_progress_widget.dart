@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:milestones/services/auth.dart';
+import 'package:milestones/shared/constants.dart';
 import 'package:sizer/sizer.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
-
-import '../../../widgets/milestones_bar.dart';
 
 class MilestonesProgressWidget extends StatelessWidget {
   const MilestonesProgressWidget(
@@ -27,7 +25,7 @@ class MilestonesProgressWidget extends StatelessWidget {
   }
 
   Widget _milestonesProgressIndicatorBuilder() {
-    const Color selectedColor = Colors.blue;
+    const Color selectedColor = colorPrimary;
     final Color unselectedColor = Colors.grey[200]!;
 
     return StepProgressIndicator(
@@ -38,7 +36,10 @@ class MilestonesProgressWidget extends StatelessWidget {
       unselectedColor: unselectedColor,
       customStep: (index, color, _) {
         return Container(
-          color: color,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(0.5.w),
+            color: color,
+          ),
           child: color == selectedColor
               ? const Icon(
                   Icons.check,
@@ -46,6 +47,7 @@ class MilestonesProgressWidget extends StatelessWidget {
                 )
               : const Icon(
                   Icons.remove,
+                  color: selectedColor,
                 ),
         );
       },

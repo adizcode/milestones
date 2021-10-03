@@ -136,6 +136,7 @@ class _MilestonesDraggableScrollableSheetState
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w500,
                 fontSize: 14.sp,
+                color: colorPrimary,
               ),
               textAlign: TextAlign.center,
             ),
