@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:milestones/models/milestone.dart';
 import 'package:milestones/services/database.dart';
 import 'package:milestones/shared/constants.dart';
+import 'package:milestones/shared/milestones_snackbar.dart';
 import 'package:milestones/shared/validators.dart';
 import 'package:milestones/widgets/frosted_glass_filter.dart';
 import 'package:sizer/sizer.dart';
@@ -28,7 +29,6 @@ class _MilestonesDraggableScrollableSheetState
   static const double maxExtent = 0.9;
 
   final _formKey = GlobalKey<FormState>();
-
   final _initialExtent = 0.1;
   bool _isExpanded = false;
   String _milestoneTask = '';
@@ -76,10 +76,9 @@ class _MilestonesDraggableScrollableSheetState
                       builder: _milestonesDialogBuilder,
                     );
                   } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Drag the sheet to expand it'),
-                      ),
+                    showMilestonesSnackBar(
+                      context: context,
+                      text: 'Please drag the bottom sheet to open it',
                     );
                   }
                 }),
@@ -97,8 +96,8 @@ class _MilestonesDraggableScrollableSheetState
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.4),
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(8.w),
-          topRight: Radius.circular(8.w),
+          topLeft: Radius.circular(borderRadius),
+          topRight: Radius.circular(borderRadius),
         ),
       ),
       child: ListView.builder(
@@ -119,17 +118,17 @@ class _MilestonesDraggableScrollableSheetState
         // Delete milestone
         await widget.databaseService.deleteMilestone(milestone.id);
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Milestone dismissed'),
-          ),
+        showMilestonesSnackBar(
+          context: context,
+          text: 'Milestone deleted',
+          padding: EdgeInsets.symmetric(vertical: 1.75.h),
         );
       },
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
         child: Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.w)),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(borderRadius / 4)),
           child: ListTile(
             title: Text(
               milestone.task,
@@ -178,7 +177,7 @@ class _MilestonesDraggableScrollableSheetState
       child: Dialog(
         backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(4.w),
+          borderRadius: BorderRadius.circular(borderRadius / 2),
         ),
         elevation: 2,
         child: Container(

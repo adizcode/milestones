@@ -5,7 +5,10 @@ import 'package:sizer/sizer.dart';
 const colorPrimary = Color(0xFF2196F3);
 const colorBackground = Color(0xFF21F3E9);
 
-// Styles and properties
+// Properties
+final borderRadius = 4.h;
+
+
 final textInputDecoration = InputDecoration(
   contentPadding: EdgeInsets.symmetric(horizontal: 3.w),
   enabledBorder: OutlineInputBorder(

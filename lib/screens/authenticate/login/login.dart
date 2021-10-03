@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:milestones/screens/authenticate/widgets/auth_form_card.dart';
 import 'package:milestones/services/auth.dart';
 import 'package:milestones/shared/constants.dart';
+import 'package:milestones/shared/milestones_snackbar.dart';
 import 'package:milestones/shared/validators.dart';
 import 'package:milestones/widgets/milestones_scaffold.dart';
 import 'package:sizer/sizer.dart';
@@ -59,8 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 try {
                   await AuthService().signInWithEmail(email, password);
                 } catch (e) {
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(SnackBar(content: Text(e.toString())));
+                  showMilestonesSnackBar(context: context, text: e.toString());
                 }
               }
             },
