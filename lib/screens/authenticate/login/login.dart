@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:milestones/screens/authenticate/widgets/auth_form_card.dart';
 import 'package:milestones/services/auth.dart';
@@ -62,7 +63,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 try {
                   await AuthService().signInWithEmail(email, password);
                 } catch (e) {
-                  showMilestonesSnackBar(context: context, text: e.toString());
+                  showMilestonesSnackBar(
+                      context: context, text: e.toString(), duration: 3000);
                 }
               }
             },

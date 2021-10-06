@@ -62,8 +62,8 @@ class _MilestonesDraggableScrollableSheetState
                 FrostedGlassFilter(
                   child: _milestonesWidgetBuilder(
                       scrollController, widget.milestonesList.length),
-                  sigmaX: 5,
-                  sigmaY: 5,
+                  sigmaX: 1,
+                  sigmaY: 1,
                 ),
                 _milestonesFabBuilder(() {
                   // Use the Actuator to open the sheet if not already open, and then animate it
@@ -173,8 +173,8 @@ class _MilestonesDraggableScrollableSheetState
 
   Widget _milestonesDialogBuilder(BuildContext context) {
     return FrostedGlassFilter(
-      sigmaX: 5,
-      sigmaY: 5,
+      sigmaX: 1,
+      sigmaY: 1,
       child: Dialog(
         backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(

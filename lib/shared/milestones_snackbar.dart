@@ -7,6 +7,7 @@ import 'constants.dart';
 void showMilestonesSnackBar({
   required BuildContext context,
   required String text,
+  int duration = 1500,
   EdgeInsetsGeometry? padding,
 }) {
   ScaffoldMessenger.of(context).showSnackBar(
@@ -18,6 +19,7 @@ void showMilestonesSnackBar({
       ),
       backgroundColor: colorPrimary,
       behavior: SnackBarBehavior.fixed,
+      duration: Duration(milliseconds: duration),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(borderRadius),

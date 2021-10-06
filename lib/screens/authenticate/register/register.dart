@@ -62,7 +62,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 try {
                   await AuthService().registerWithEmail(email, password);
                 } catch (e) {
-                  showMilestonesSnackBar(context: context, text: e.toString());
+                  showMilestonesSnackBar(
+                      context: context, text: e.toString(), duration: 3000);
                 }
               }
             },
