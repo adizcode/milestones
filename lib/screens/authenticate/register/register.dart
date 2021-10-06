@@ -39,6 +39,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             decoration: textInputDecoration.copyWith(
               labelText: 'Email',
             ),
+            cursorColor: colorPrimary,
           ),
           SizedBox(
             height: 5.w,
@@ -49,6 +50,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             decoration: textInputDecoration.copyWith(
               labelText: 'Password',
             ),
+            cursorColor: colorPrimary,
             obscureText: true,
           ),
           SizedBox(
@@ -60,7 +62,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 try {
                   await AuthService().registerWithEmail(email, password);
                 } catch (e) {
-                  showMilestonesSnackBar(context: context, text: e.toString());
+                  showMilestonesSnackBar(
+                      context: context, text: e.toString(), duration: 3000);
                 }
               }
             },
@@ -68,6 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               'Sign Up',
               style: TextStyle(fontSize: 12.sp),
             ),
+            style: ElevatedButton.styleFrom(primary: colorPrimary),
           ),
         ],
       ),

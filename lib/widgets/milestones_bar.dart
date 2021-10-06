@@ -38,11 +38,13 @@ class MilestonesBar extends StatelessWidget {
               icon: Icon(
                 actionIcon,
                 size: 6.w,
+                color: colorPrimary,
               ),
               label: Text(
                 actionLabel,
                 style: TextStyle(
                   fontSize: 14.sp,
+                  color: colorPrimary,
                 ),
               ),
             ),

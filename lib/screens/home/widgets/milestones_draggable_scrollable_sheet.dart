@@ -62,8 +62,8 @@ class _MilestonesDraggableScrollableSheetState
                 FrostedGlassFilter(
                   child: _milestonesWidgetBuilder(
                       scrollController, widget.milestonesList.length),
-                  sigmaX: 5,
-                  sigmaY: 5,
+                  sigmaX: 1,
+                  sigmaY: 1,
                 ),
                 _milestonesFabBuilder(() {
                   // Use the Actuator to open the sheet if not already open, and then animate it
@@ -100,10 +100,14 @@ class _MilestonesDraggableScrollableSheetState
           topRight: Radius.circular(borderRadius),
         ),
       ),
-      child: ListView.builder(
-        controller: scrollController,
-        itemCount: milestonesCount,
-        itemBuilder: _milestonesItemBuilder,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 8.w),
+        child: ListView.builder(
+          controller: scrollController,
+          itemCount: milestonesCount,
+          itemBuilder: _milestonesItemBuilder,
+          physics: const BouncingScrollPhysics(),
+        ),
       ),
     );
   }
@@ -125,8 +129,9 @@ class _MilestonesDraggableScrollableSheetState
         );
       },
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
+        padding: EdgeInsets.symmetric(vertical: 3.h),
         child: Card(
+          margin: EdgeInsets.zero,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(borderRadius / 4)),
           child: ListTile(
@@ -148,6 +153,21 @@ class _MilestonesDraggableScrollableSheetState
           ),
         ),
       ),
+      background: Padding(
+        padding: EdgeInsets.symmetric(vertical: 3.h),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(borderRadius / 4),
+            color: colorAccent,
+          ),
+          child: Center(
+            child: Text(
+              'Remove',
+              style: GoogleFonts.poppins(color: Colors.white),
+            ),
+          ),
+        ),
+      ),
     );
   }
 
@@ -163,6 +183,7 @@ class _MilestonesDraggableScrollableSheetState
             child: FloatingActionButton(
               onPressed: onPressed,
               child: const Icon(Icons.add),
+              backgroundColor: colorPrimary,
             ),
           ),
         ),
@@ -172,8 +193,8 @@ class _MilestonesDraggableScrollableSheetState
 
   Widget _milestonesDialogBuilder(BuildContext context) {
     return FrostedGlassFilter(
-      sigmaX: 5,
-      sigmaY: 5,
+      sigmaX: 1,
+      sigmaY: 1,
       child: Dialog(
         backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(
@@ -193,7 +214,13 @@ class _MilestonesDraggableScrollableSheetState
                   onChanged: (task) => _milestoneTask = task,
                   validator: emptyTextValidator,
                   decoration: textInputDecoration.copyWith(
-                      labelText: 'What did you achieve?'),
+                    labelText: 'What did you achieve?',
+                    labelStyle: GoogleFonts.poppins(
+                      color: colorPrimary,
+                      fontSize: 12.sp,
+                    ),
+                  ),
+                  cursorColor: colorPrimary,
                 ),
                 SizedBox(
                   height: 1.5.h,
@@ -219,6 +246,7 @@ class _MilestonesDraggableScrollableSheetState
                   ),
                   style: ElevatedButton.styleFrom(
                     fixedSize: Size.fromHeight(5.h),
+                    primary: colorPrimary,
                   ),
                 ),
               ],
