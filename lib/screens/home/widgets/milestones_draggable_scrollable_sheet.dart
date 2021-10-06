@@ -100,10 +100,14 @@ class _MilestonesDraggableScrollableSheetState
           topRight: Radius.circular(borderRadius),
         ),
       ),
-      child: ListView.builder(
-        controller: scrollController,
-        itemCount: milestonesCount,
-        itemBuilder: _milestonesItemBuilder,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 8.w),
+        child: ListView.builder(
+          controller: scrollController,
+          itemCount: milestonesCount,
+          itemBuilder: _milestonesItemBuilder,
+          physics: const BouncingScrollPhysics(),
+        ),
       ),
     );
   }
@@ -125,8 +129,9 @@ class _MilestonesDraggableScrollableSheetState
         );
       },
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
+        padding: EdgeInsets.symmetric(vertical: 3.h),
         child: Card(
+          margin: EdgeInsets.zero,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(borderRadius / 4)),
           child: ListTile(
@@ -145,6 +150,21 @@ class _MilestonesDraggableScrollableSheetState
             onLongPress: () {
               // Select milestone
             },
+          ),
+        ),
+      ),
+      background: Padding(
+        padding: EdgeInsets.symmetric(vertical: 3.h),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(borderRadius / 4),
+            color: colorAccent,
+          ),
+          child: Center(
+            child: Text(
+              'Remove',
+              style: GoogleFonts.poppins(color: Colors.white),
+            ),
           ),
         ),
       ),
