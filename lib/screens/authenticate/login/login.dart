@@ -39,6 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
             decoration: textInputDecoration.copyWith(
               labelText: 'Email',
             ),
+            cursorColor: colorPrimary,
           ),
           SizedBox(
             height: 5.w,
@@ -49,6 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
             decoration: textInputDecoration.copyWith(
               labelText: 'Password',
             ),
+            cursorColor: colorPrimary,
             obscureText: true,
           ),
           SizedBox(
@@ -68,6 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
               'Sign In',
               style: TextStyle(fontSize: 12.sp),
             ),
+            style: ElevatedButton.styleFrom(primary: colorPrimary),
           ),
         ],
       ),

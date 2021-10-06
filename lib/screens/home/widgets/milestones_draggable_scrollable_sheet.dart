@@ -163,6 +163,7 @@ class _MilestonesDraggableScrollableSheetState
             child: FloatingActionButton(
               onPressed: onPressed,
               child: const Icon(Icons.add),
+              backgroundColor: colorPrimary,
             ),
           ),
         ),
@@ -193,7 +194,13 @@ class _MilestonesDraggableScrollableSheetState
                   onChanged: (task) => _milestoneTask = task,
                   validator: emptyTextValidator,
                   decoration: textInputDecoration.copyWith(
-                      labelText: 'What did you achieve?'),
+                    labelText: 'What did you achieve?',
+                    labelStyle: GoogleFonts.poppins(
+                      color: colorPrimary,
+                      fontSize: 12.sp,
+                    ),
+                  ),
+                  cursorColor: colorPrimary,
                 ),
                 SizedBox(
                   height: 1.5.h,
@@ -219,6 +226,7 @@ class _MilestonesDraggableScrollableSheetState
                   ),
                   style: ElevatedButton.styleFrom(
                     fixedSize: Size.fromHeight(5.h),
+                    primary: colorPrimary,
                   ),
                 ),
               ],
