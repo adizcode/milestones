@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:milestones/models/milestone.dart';
 import 'package:milestones/models/user.dart';
-import 'package:milestones/services/auth.dart';
-import 'package:milestones/services/database.dart';
 import 'package:milestones/screens/home/widgets/milestones_draggable_scrollable_sheet.dart';
 import 'package:milestones/screens/home/widgets/milestones_progress_widget.dart';
+import 'package:milestones/services/auth.dart';
+import 'package:milestones/services/database.dart';
+import 'package:milestones/widgets/loader.dart';
 import 'package:milestones/widgets/milestones_scaffold.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +23,10 @@ class HomeScreen extends StatelessWidget {
     return StreamBuilder<List<Milestone>>(
       stream: db.milestones,
       builder: (context, snapshot) {
+        if (snapshot.data == null) {
+          return const Loader();
+        }
+
         return MilestonesScaffold(
           onActionPressed: () async {
             await AuthService().signOut();
@@ -32,10 +37,10 @@ class HomeScreen extends StatelessWidget {
             children: [
               MilestonesProgressWidget(
                 totalMilestonesCount: _totalMilestonesCount,
-                currentMilestonesCount: snapshot.data?.length ?? 0,
+                currentMilestonesCount: snapshot.data!.length,
               ),
               MilestonesDraggableScrollableSheet(
-                  milestonesList: snapshot.data ?? [], databaseService: db),
+                  milestonesList: snapshot.data!, databaseService: db),
             ],
           ),
         );
