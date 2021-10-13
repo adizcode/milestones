@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:milestones/models/user.dart';
 import 'package:milestones/screens/wrapper.dart';
 import 'package:milestones/services/auth.dart';
+import 'package:milestones/shared/constants.dart';
 import 'package:milestones/widgets/loader.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -12,6 +13,7 @@ import 'package:sizer/sizer.dart';
 // Potential Packages: flutter_slidable, slide_up_panel
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     const MyApp(),
   );
@@ -45,7 +47,10 @@ class FirebaseFutureBuilder extends StatefulWidget {
 }
 
 class _FirebaseFutureBuilderState extends State<FirebaseFutureBuilder> {
-  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  final Future<FirebaseApp> _initialization = Future.delayed(
+    loaderDuration,
+    () => Firebase.initializeApp(),
+  );
 
   @override
   Widget build(BuildContext context) {

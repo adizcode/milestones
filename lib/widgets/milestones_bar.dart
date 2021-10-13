@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:milestones/shared/constants.dart';
 import 'package:sizer/sizer.dart';
 
-class MilestonesBar extends StatelessWidget {
+class MilestonesBar extends StatefulWidget {
   const MilestonesBar({
     Key? key,
     required this.onActionPressed,
@@ -13,6 +13,25 @@ class MilestonesBar extends StatelessWidget {
   final void Function()? onActionPressed;
   final IconData? actionIcon;
   final String actionLabel;
+
+  @override
+  State<MilestonesBar> createState() => _MilestonesBarState();
+}
+
+class _MilestonesBarState extends State<MilestonesBar> {
+
+  bool isVisible = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      Future.delayed(const Duration(milliseconds: 0), () {
+        setState(() => isVisible = true);
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,21 +52,25 @@ class MilestonesBar extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            TextButton.icon(
-              onPressed: onActionPressed,
-              icon: Icon(
-                actionIcon,
-                size: 6.w,
-                color: colorPrimary,
-              ),
-              label: Text(
-                actionLabel,
-                style: TextStyle(
-                  fontSize: 14.sp,
+            AnimatedOpacity(
+              opacity: isVisible ? 1 : 0,
+              duration: fadeDuration,
+              child: TextButton.icon(
+                onPressed: widget.onActionPressed,
+                icon: Icon(
+                  widget.actionIcon,
+                  size: 6.w,
                   color: colorPrimary,
                 ),
+                label: Text(
+                  widget.actionLabel,
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    color: colorPrimary,
+                  ),
+                ),
               ),
-            ),
+            )
           ],
         ),
       ),
