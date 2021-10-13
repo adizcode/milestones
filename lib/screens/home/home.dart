@@ -5,7 +5,7 @@ import 'package:milestones/screens/home/widgets/milestones_draggable_scrollable_
 import 'package:milestones/screens/home/widgets/milestones_progress_widget.dart';
 import 'package:milestones/services/auth.dart';
 import 'package:milestones/services/database.dart';
-import 'package:milestones/widgets/loader.dart';
+import 'package:milestones/shared/constants.dart';
 import 'package:milestones/widgets/milestones_scaffold.dart';
 import 'package:provider/provider.dart';
 
@@ -21,11 +21,9 @@ class HomeScreen extends StatelessWidget {
         DatabaseService(Provider.of<User?>(context)!.uid);
 
     return StreamBuilder<List<Milestone>>(
+      initialData: const [],
       stream: db.milestones,
       builder: (context, snapshot) {
-        if (snapshot.data == null) {
-          return const Loader();
-        }
 
         return MilestonesScaffold(
           onActionPressed: () async {
@@ -33,15 +31,19 @@ class HomeScreen extends StatelessWidget {
           },
           actionIcon: Icons.logout,
           actionLabel: 'Logout',
-          child: Stack(
-            children: [
-              MilestonesProgressWidget(
-                totalMilestonesCount: _totalMilestonesCount,
-                currentMilestonesCount: snapshot.data!.length,
-              ),
-              MilestonesDraggableScrollableSheet(
-                  milestonesList: snapshot.data!, databaseService: db),
-            ],
+          child: AnimatedOpacity(
+            opacity: snapshot.data!.isNotEmpty ? 1 : 0,
+            duration: fadeDuration,
+            child: Stack(
+              children: [
+                MilestonesProgressWidget(
+                  totalMilestonesCount: _totalMilestonesCount,
+                  currentMilestonesCount: snapshot.data!.length,
+                ),
+                MilestonesDraggableScrollableSheet(
+                    milestonesList: snapshot.data!, databaseService: db),
+              ],
+            ),
           ),
         );
       },

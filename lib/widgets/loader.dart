@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:milestones/shared/constants.dart';
 
 class Loader extends StatelessWidget {
@@ -9,9 +10,9 @@ class Loader extends StatelessWidget {
     return Container(
       color: colorBackground,
       child: const Center(
-        child: CircularProgressIndicator(
+        child: SpinKitFoldingCube(
           color: colorPrimary,
-        ),
+        )
       ),
     );
   }

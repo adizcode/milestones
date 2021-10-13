@@ -6,10 +6,14 @@ const colorPrimary = Color(0xFF08D9D6);
 const colorBackground = Color(0xFFEAEAEA);
 const colorAccent = Color(0xFFFF2E63);
 
-// Properties
+// Transition Properties
+const loaderDuration = Duration(seconds: 2);
+const fadeDuration = Duration(milliseconds: 1500);
+
+// Container Properties
 final borderRadius = 4.h;
 
-
+// Text Properties
 final textInputDecoration = InputDecoration(
   contentPadding: EdgeInsets.symmetric(horizontal: 3.w),
   enabledBorder: OutlineInputBorder(
