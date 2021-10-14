@@ -37,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<Milestone>>(
+      initialData: const [],
       stream: db!.milestones,
       builder: (context, snapshot) {
         return MilestonesScaffold(
@@ -45,45 +46,49 @@ class _HomeScreenState extends State<HomeScreen> {
           },
           actionIcon: Icons.logout,
           actionLabel: 'Logout',
-          child: SlidingUpPanel(
-            controller: panelController,
-            panelBuilder: (scrollController) => milestonesWidgetBuilder(
-              scrollController,
-              snapshot.data ?? [],
-            ),
-            body: MilestonesProgressWidget(
-              totalMilestonesCount: totalMilestonesCount,
-              currentMilestonesCount: snapshot.data?.length ?? 0,
-            ),
-            collapsed: ElevatedButton(
-              child: const Text('View Milestones'),
-              onPressed: () => panelController.open(),
-              style: ElevatedButton.styleFrom(
-                primary: colorPrimary,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(borderRadius),
-                    topRight: Radius.circular(borderRadius),
+          child: AnimatedOpacity(
+            opacity: snapshot.data!.isNotEmpty ? 1 : 0,
+            duration: fadeDuration,
+            child: SlidingUpPanel(
+              controller: panelController,
+              panelBuilder: (scrollController) => milestonesWidgetBuilder(
+                scrollController,
+                snapshot.data ?? [],
+              ),
+              body: MilestonesProgressWidget(
+                totalMilestonesCount: totalMilestonesCount,
+                currentMilestonesCount: snapshot.data?.length ?? 0,
+              ),
+              collapsed: ElevatedButton(
+                child: const Text('View Milestones'),
+                onPressed: () => panelController.open(),
+                style: ElevatedButton.styleFrom(
+                  primary: colorPrimary,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(borderRadius),
+                      topRight: Radius.circular(borderRadius),
+                    ),
+                  ),
+                  elevation: 0,
+                  textStyle: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
-                elevation: 0,
-                textStyle: GoogleFonts.poppins(
-                  fontWeight: FontWeight.w500,
-                ),
               ),
+              minHeight: 8.h,
+              maxHeight: 85.h,
+              parallaxEnabled: true,
+              parallaxOffset: 1,
+              backdropEnabled: true,
+              backdropOpacity: 0.1,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(borderRadius),
+                topRight: Radius.circular(borderRadius),
+              ),
+              color: colorPrimary.withOpacity(0.5),
+              boxShadow: null,
             ),
-            minHeight: 8.h,
-            maxHeight: 85.h,
-            parallaxEnabled: true,
-            parallaxOffset: 1,
-            backdropEnabled: true,
-            backdropOpacity: 0.1,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(borderRadius),
-              topRight: Radius.circular(borderRadius),
-            ),
-            color: colorPrimary.withOpacity(0.5),
-            boxShadow: null,
           ),
         );
       },
