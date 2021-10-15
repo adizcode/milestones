@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+// Counts
+const int totalMilestonesCount = 10;
+
 // Colors
 const colorPrimary = Color(0xFF08D9D6);
 const colorBackground = Color(0xFFEAEAEA);
 const colorAccent = Color(0xFFFF2E63);
+const colorAccentLight = Color(0xFFFF477C);
 
 // Transition Properties
 const loaderDuration = Duration(seconds: 2);
