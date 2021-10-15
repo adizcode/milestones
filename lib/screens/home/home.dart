@@ -168,7 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget milestonesWidgetBuilder(
       ScrollController scrollController, List<Milestone> milestones) {
     return Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8.w),
+        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6.h),
         child: Stack(
           children: [
             ListView.builder(
@@ -178,7 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   milestonesItemBuilder(context, milestones[index]),
             ),
             Align(
-              alignment: const Alignment(0, 0.85),
+              alignment: const Alignment(0, 0.95),
               child: FloatingActionButton(
                 onPressed: () => showDialog(
                   context: context,
