@@ -28,6 +28,19 @@ class _HomeScreenState extends State<HomeScreen> {
   PanelController panelController = PanelController();
   DatabaseService? db;
 
+  bool isVisible = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      Future.delayed(const Duration(milliseconds: 0), () {
+        setState(() => isVisible = true);
+      });
+    });
+  }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -47,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
           actionIcon: Icons.logout,
           actionLabel: 'Logout',
           child: AnimatedOpacity(
-            opacity: snapshot.data!.isNotEmpty ? 1 : 0,
+            opacity: isVisible ? 1 : 0,
             duration: fadeDuration,
             child: SlidingUpPanel(
               controller: panelController,
