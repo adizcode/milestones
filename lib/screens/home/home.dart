@@ -99,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 topLeft: Radius.circular(borderRadius),
                 topRight: Radius.circular(borderRadius),
               ),
-              color: colorPrimary.withOpacity(0.5),
+              color: colorPrimary,
               boxShadow: null,
             ),
           ),
@@ -140,6 +140,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             onTap: () {
               // Modify milestone
+              showDialog(
+                context: context,
+                builder: (context) => milestonesDialogBuilder(
+                  context,
+                  milestone: milestone,
+                ),
+              );
             },
             onLongPress: () {
               // Select milestone
@@ -182,7 +189,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: FloatingActionButton(
                 onPressed: () => showDialog(
                   context: context,
-                  builder: milestonesDialogBuilder,
+                  builder: (context) => milestonesDialogBuilder(context),
                 ),
                 child: const Icon(Icons.add),
                 backgroundColor: colorAccentLight,
@@ -192,7 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ));
   }
 
-  Widget milestonesDialogBuilder(BuildContext context) {
+  Widget milestonesDialogBuilder(BuildContext context, {Milestone? milestone}) {
     return FrostedGlassFilter(
       sigmaX: 1,
       sigmaY: 1,
@@ -211,7 +218,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextFormField(
-                  initialValue: _milestoneTask,
+                  initialValue: milestone?.task ?? _milestoneTask,
                   onChanged: (task) => _milestoneTask = task,
                   validator: emptyTextValidator,
                   decoration: textInputDecoration.copyWith(
@@ -233,6 +240,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       // Add milestone
                       await db!.setMilestone(
                         {'task': _milestoneTask},
+                        id: milestone?.id,
                       );
 
                       // Close dialog
@@ -242,8 +250,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       _milestoneTask = '';
                     }
                   },
-                  child: const Text(
-                    'Add Milestone',
+                  child: Text(
+                    milestone == null ? 'Add Milestone' : 'Set Milestone',
                   ),
                   style: ElevatedButton.styleFrom(
                     fixedSize: Size.fromHeight(5.h),

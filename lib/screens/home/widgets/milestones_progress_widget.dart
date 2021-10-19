@@ -35,19 +35,25 @@ class MilestonesProgressWidget extends StatelessWidget {
       selectedColor: selectedColor,
       unselectedColor: unselectedColor,
       customStep: (index, color, _) {
-        return Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(0.5.w),
-            color: color,
-          ),
+        return Material(
+          borderRadius: BorderRadius.circular(0.5.w),
+          color: color,
           child: color == selectedColor
-              ? const Icon(
-                  Icons.check,
-                  color: Colors.white,
+              ? InkWell(
+                  onTap: () {},
+                  splashColor: colorPrimaryLight,
+                  child: const Icon(
+                    Icons.check,
+                    color: Colors.white,
+                  ),
                 )
-              : const Icon(
-                  Icons.remove,
-                  color: selectedColor,
+              : InkWell(
+                  onTap: () {},
+                  splashColor: Colors.white,
+                  child: const Icon(
+                    Icons.remove,
+                    color: selectedColor,
+                  ),
                 ),
         );
       },
