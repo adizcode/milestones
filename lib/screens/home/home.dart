@@ -99,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 topLeft: Radius.circular(borderRadius),
                 topRight: Radius.circular(borderRadius),
               ),
-              color: colorPrimary.withOpacity(0.5),
+              color: colorPrimary,
               boxShadow: null,
             ),
           ),
