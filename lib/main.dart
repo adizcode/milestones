@@ -9,9 +9,6 @@ import 'package:milestones/widgets/loader.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-// Next: Testing, Splash Screen, Animations
-// Potential Packages: flutter_slidable, slide_up_panel
-
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
